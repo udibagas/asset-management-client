@@ -7,10 +7,9 @@
 <script setup>
 import axios from "axios";
 import { onMounted } from "vue";
+import { api } from "./lib/api";
 
 onMounted(() => {
-  axios.get("http://localhost:8000/sanctum/csrf-cookie", {
-    withCredentials: true,
-  });
+  api.get("csrf-cookie");
 });
 </script>
