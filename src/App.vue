@@ -5,7 +5,6 @@
 </template>
 
 <script setup>
-import axios from "axios";
 import { onMounted } from "vue";
 import { api } from "./lib/api";
 
