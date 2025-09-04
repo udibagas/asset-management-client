@@ -9,6 +9,6 @@ import { onMounted } from "vue";
 import { api } from "./lib/api";
 
 onMounted(() => {
-  api.get("csrf-cookie");
+  api.get("/sanctum/csrf-cookie");
 });
 </script>
