@@ -1,5 +1,11 @@
 <template>
-  <h1 class="text-3xl font-bold mb-8">Kelola Aset</h1>
+  <div class="flex items-center justify-between mb-8">
+    <h1 class="text-3xl font-bold mb-8">Kelola Aset</h1>
+    <div>
+      <div class="text-xl">{{ user.name }}</div>
+      <div class="text-slate-500">{{ user.email }}</div>
+    </div>
+  </div>
 
   <div class="mb-8 border border-gray-300 shadow rounded-2xl p-8">
     <h2 class="text-xl font-bold">Total Nilai Aset: Rp. ??</h2>
@@ -110,7 +116,6 @@
 
 <script setup>
 import { onMounted, ref } from "vue";
-import axios from "axios";
 import { api } from "@/lib/api";
 
 const assets = ref([]);
@@ -119,6 +124,7 @@ const locations = ref([]);
 const search = ref("");
 const category_id = ref("");
 const location_id = ref("");
+const user = ref(JSON.parse(localStorage.getItem("user") || "{}"));
 
 async function fetchData() {
   try {

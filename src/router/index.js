@@ -1,3 +1,4 @@
+import { api } from "@/lib/api";
 import { createRouter, createWebHistory } from "vue-router";
 
 const router = createRouter({
@@ -19,6 +20,21 @@ const router = createRouter({
       component: () => import("../pages/Register.vue"),
     },
   ],
+});
+
+router.beforeEach(async (to, from, next) => {
+  console.log("Navigating to:", to.fullPath);
+  if (to.fullPath === "/login" || to.fullPath === "/register") {
+    return next();
+  }
+
+  try {
+    const { data } = await api.get("/api/profile");
+    localStorage.setItem("user", JSON.stringify(data));
+    next();
+  } catch (error) {
+    next("/login");
+  }
 });
 
 export default router;
